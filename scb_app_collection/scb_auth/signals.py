@@ -1,0 +1,28 @@
+from django.dispatch import receiver
+from django.db.models.signals import post_migrate
+from django.contrib.auth import get_user_model
+from scb_auth.conf import scb_config
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+User = get_user_model()
+
+
+@receiver(post_migrate)
+def create_superuser(sender, **kwargs):
+    username_field = scb_config.get("USERNAME_FIELD")
+    credentials = scb_config.get("CREDENTIALS_SUPERUSER")
+    if not User.objects.filter(is_superuser=True).exists():
+        data = {
+            username_field: credentials["username"],
+            "password": credentials["password"],
+            "last_name":"Admin",
+            "first_name":"Auth default",
+        }
+        try:
+            user = User.objects.create_superuser(**data)
+            logger.info(f"Super utilisateur créé avec success : {user}") 
+        except Exception as e:
+            logger.error(f"Super utilisateur par default non créé : {e}")

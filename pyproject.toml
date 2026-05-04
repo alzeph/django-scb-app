@@ -1,0 +1,18 @@
+[project]
+name = "scb-auth"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=6.0.4",
+    "django-cors-headers",
+    "django-factory-all",
+    "django-filter",
+    "djangorestframework",
+    "djangorestframework-simplejwt",
+    "dotenv",
+    "drf-spectacular",
+    "drf-spectacular-sidecar",
+    "pyotp>=2.9.0",
+]
