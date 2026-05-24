@@ -1,15 +1,19 @@
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from scb_auth.conf import scb_config
 
 class JWTAuthenticationFlexible(JWTAuthentication):
     def authenticate(self, request):
+        raw_token = None
         # 1. Essaye de lire depuis le cookie
-        raw_token = request.COOKIES.get("access")
-
+        if scb_config.get('JWT_HTTP_ONLY'):
+            raw_token = request.COOKIES.get("access")
+            
+        elif scb_config.get('JWT_COOKIE_JSON'):
         # 2. Si pas dans cookie, regarde dans le header Authorization
-        if not raw_token:
             auth_header = request.headers.get("Authorization")
             if auth_header and auth_header.startswith("Bearer "):
                 raw_token = auth_header.split(" ")[1]
+
 
         # 3. Aucun token trouvé
         if not raw_token:

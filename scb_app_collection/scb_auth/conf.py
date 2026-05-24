@@ -33,6 +33,7 @@ class ScbAuthConfig:
         "USE_OTP":         True,
         "JWT_HTTP_ONLY":     True,
         "JWT_COOKIE_JSON":   False,
+        "REGISTER_INCLUDE_IN_OTP": False
     }
 
     AVAILABLE_OPTIONAL_FIELDS: set = {"otp_secret", "status_verified"}
@@ -171,7 +172,6 @@ class ScbAuthConfig:
         # Mise en cache après validation réussie
         self._resolved = {**self._DEFAULTS, **raw}
         logger.debug("scb_auth – configuration SCB_AUTH validée avec succès.")
-
 
     def reset(self) -> None:
         """

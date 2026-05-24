@@ -8,5 +8,5 @@ router.register(r'users', views.UserViewSet, basename='users')
 
 app_name = 'scb_auth'
 urlpatterns = [
-    path('scb_auth', include(router.urls)),
+    path('scb_auth/', include(router.urls)),
 ]

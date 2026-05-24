@@ -69,6 +69,27 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'scb_app_collection.wsgi.application'
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "scb_auth.authentification.JWTAuthenticationFlexible",
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 20 if DEBUG else 30,
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'SCB APP Collection API',
+    'DESCRIPTION': "Documentation de l’API de la collection  d'application réutilisable django de SCB",
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'COMPONENT_SPLIT_REQUEST': True,  
+    'POSTPROCESSING_HOOKS': [],
+    'SCHEMA_PATH_PREFIX': r'/api/(users|establishments|auth)',
+    'SCHEMA_PATH_PREFIX_TRIM': False,
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
@@ -126,7 +147,8 @@ SCB_AUTH = {
         "password": "qwerty123",
     },
     "JWT_HTTP_ONLY" : True,
-    "JWT_COOKIE_JSON" : True,
+    "JWT_COOKIE_JSON" : False,
+    "REGISTER_INCLUDE_IN_OTP" : True
 }
 
 AUTH_USER_MODEL = "scb_auth.User"

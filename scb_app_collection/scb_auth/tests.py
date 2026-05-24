@@ -196,6 +196,14 @@ class AuthsTestCase(TestCase):
         self.assertEqual(response_otp.status_code, 200)
         response = self.client.post(url, {'username': user.phone_number, 'code': '123456'}, format='json')
         self.assertEqual(response.status_code, 401)
+
+    def test_login_with_register_include_otp_ask_true_success(self):
+        phone_number = '+225000000023'
+        url = reverse('scb_auth:users-login')
+        response_otp = self.client.post(reverse('scb_auth:users-obtain-otp'), {'username': phone_number}, format='json')
+        self.assertEqual(response_otp.status_code, 200)
+        response = self.client.post(url, {'username': phone_number, 'code': '123456'}, format='json')
+        self.assertEqual(response.status_code, 401)
     
     def test_login_failure_data_not_found(self):
         url = reverse('scb_auth:users-login')
