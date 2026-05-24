@@ -42,7 +42,8 @@ class UserViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'patch', 'put', 'delete']
 
     def get_permissions(self):
-        if self.action in ['create']:
+        public_actions = ['create', 'obtain_otp', 'verify_email', 'verify_phone', 'login']
+        if self.action in public_actions:
             permission_classes = [permissions.AllowAny]
         else:
             permission_classes = [permissions.IsAuthenticated]
