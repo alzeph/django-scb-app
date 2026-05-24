@@ -135,7 +135,7 @@ class UserViewSet(viewsets.ModelViewSet):
             400: ValidationError400Serializer
         }
     )
-    @action(detail=False, methods=['post'], url_name='login', url_path=r'login')
+    @action(detail=False, methods=['post'], url_name='login', url_path=r'login', permission_classes=[permissions.AllowAny])
     def login(self, request, *args, **kwargs):
         serializer = LoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -237,7 +237,7 @@ class UserViewSet(viewsets.ModelViewSet):
             ),
         },
     )
-    @action(detail=False, methods=['post'], url_name='obtain-otp', url_path=r'obtain-otp')
+    @action(detail=False, methods=['post'], url_name='obtain-otp', url_path=r'obtain-otp', permission_classes=[permissions.AllowAny])
     def obtain_otp(self, request, *args, **kwargs):
         if scb_config.is_field_enabled("otp_secret") and scb_config.get("USE_OTP"):
             data = UsernameSerializer(data=request.data)

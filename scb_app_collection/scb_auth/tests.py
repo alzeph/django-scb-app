@@ -198,7 +198,7 @@ class AuthsTestCase(TestCase):
         self.assertEqual(response.status_code, 401)
 
     def test_login_with_register_include_otp_ask_true_success(self):
-        phone_number = '+225000000023'
+        phone_number = '+225000000033'
         url = reverse('scb_auth:users-login')
         response_otp = self.client.post(reverse('scb_auth:users-obtain-otp'), {'username': phone_number}, format='json')
         self.assertEqual(response_otp.status_code, 200)

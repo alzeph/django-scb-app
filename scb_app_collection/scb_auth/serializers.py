@@ -55,6 +55,7 @@ class UsernameSerializer(serializers.Serializer):
         if not value:
             raise serializers.ValidationError("username est obligatoire")
         if scb_config.get("REGISTER_INCLUDE_IN_OTP"):
+            print("creation de l'user")
             User.objects.get_or_create(**{username_field: value})
             return value
         if User.objects.filter(**{username_field: value}).exists():

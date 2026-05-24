@@ -34,12 +34,13 @@ python manage.py migrate
 
 Toute la configuration passe par le dictionnaire `SCB_AUTH` dans `settings.py`.
 
-| Clé               | Type         | Défaut  | Description                                                |
-|-------------------|--------------|---------|------------------------------------------------------------|
-| `OPTIONAL_FIELDS` | `list[str]`  | `[]`    | Champs à **désactiver**. Valeurs acceptées : voir ci-dessous |
-| `OTP_LIFETIME`    | `int`        | `300`   | Durée de vie d'un OTP en secondes                          |
-| `OTP_DIGITS`      | `int`        | `4`     | Nombre de chiffres du code OTP                             |
-| `USE_OTP`         | `bool`       | `True`  | Active/désactive entièrement le modèle `OtpToken`          |
+| Clé                           | Type         | Défaut  | Description                                                          |
+|-------------------------------|--------------|---------|----------------------------------------------------------------------|
+| `OPTIONAL_FIELDS`             | `list[str]`  | `[]`    | Champs à **désactiver**. Valeurs acceptées : voir ci-dessous         |
+| `OTP_LIFETIME`                | `int`        | `300`   | Durée de vie d'un OTP en secondes                                    |
+| `OTP_DIGITS`                  | `int`        | `4`     | Nombre de chiffres du code OTP                                       |
+| `USE_OTP`                     | `bool`       | `True`  | Active/désactive entièrement le modèle `OtpToken`                    |
+| `REGISTER_INCLUDE_IN_OTP`     | `bool`       | `False` | Permet de cree un utilisateur au login si le OTP login y est         |
 
 ### Champs optionnels disponibles
 
