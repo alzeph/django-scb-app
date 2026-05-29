@@ -222,11 +222,7 @@ class UserViewSet(viewsets.ModelViewSet):
     @extend_schema(
         operation_id="obtain-otp",
         summary="obtention de l'otp",
-        description=(
-            "permet a l'utilisateur de obtenir un OTP pour se connecter",
-            "si l'utilisateur n'existe pas son compte est crée automatiquement",
-            "L'OTP est envoyé par SMS ou Whatsapp"
-        ),
+        description="obtention de l'otp de la part de l'utilisateur",
         request=UsernameSerializer,
         responses={
             200: OpenApiResponse(
