@@ -142,8 +142,8 @@ class User(*_build_user_bases()):
     """
     username_field = scb_config.get("USERNAME_FIELD")
 
-    first_name = models.CharField(max_length=30, verbose_name=_("Prénom"))
-    last_name  = models.CharField(max_length=30, verbose_name=_("Nom"))
+    first_name = models.CharField(max_length=30, null=True, blank=True, verbose_name=_("Prénom"))
+    last_name  = models.CharField(max_length=30, null=True, blank=True, verbose_name=_("Nom"))
     phone_number = models.CharField(
         max_length=20,
         unique= username_field == "phone_number",
@@ -168,7 +168,7 @@ class User(*_build_user_bases()):
     )
     date_joined = models.DateTimeField(auto_now_add=True, verbose_name=_("Date d'inscription"))
     objects = UserManager()
-    USERNAME_FIELD  = "phone_number"
+    USERNAME_FIELD  = scb_config.get("USERNAME_FIELD")
     REQUIRED_FIELDS = ["first_name", "last_name"]
 
 

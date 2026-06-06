@@ -246,3 +246,4 @@ class UserViewSet(viewsets.ModelViewSet):
             otp_token.generate_otp()
             return Response(UserSerializer(user).data) 
         return Response({"detail": "Otp already enabled"}, status=status.HTTP_404_NOT_FOUND)
+
