@@ -1,6 +1,7 @@
 from django.dispatch import receiver
 from django.db.models.signals import post_migrate
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from scb_auth.conf import scb_config
 import logging
 
@@ -26,3 +27,10 @@ def create_superuser(sender, **kwargs):
             logger.info(f"Super utilisateur créé avec success : {user}") 
         except Exception as e:
             logger.error(f"Super utilisateur par default non créé : {e}")
+
+@receiver(post_migrate)
+def initialize_groups(sender, **kwargs):
+    for group_name in scb_config.get("GROUPS"):
+        Group.objects.get_or_create(name=group_name)
+    logger.info(f"Groupes crées avec success : {scb_config.get('GROUPS')}")
+

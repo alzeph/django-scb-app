@@ -33,7 +33,9 @@ class ScbAuthConfig:
         "USE_OTP":         True,
         "JWT_HTTP_ONLY":     True,
         "JWT_COOKIE_JSON":   False,
-        "REGISTER_INCLUDE_IN_OTP": False
+        "REGISTER_INCLUDE_IN_OTP": False,
+        "GROUP_DEFAULT": None,
+        "GROUPS": [],
     }
 
     AVAILABLE_OPTIONAL_FIELDS: set = {"otp_secret", "status_verified"}

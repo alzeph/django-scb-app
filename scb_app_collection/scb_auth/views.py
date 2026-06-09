@@ -123,6 +123,7 @@ class UserViewSet(viewsets.ModelViewSet):
     )
     def current_user(self, request):
         serializer = self.get_serializer(request.user)
+        print(serializer.data)
         return Response(serializer.data)
     
     @extend_schema(
@@ -149,7 +150,7 @@ class UserViewSet(viewsets.ModelViewSet):
         
         response = Response(status=status.HTTP_200_OK)
         if scb_config.get("JWT_COOKIE_JSON"):
-            response =response.data = {"access": access, "refresh": refresh, "user": UserSerializer(user).data}
+            response.data = {"access": access, "refresh": refresh, "user": UserSerializer(user).data}
         if scb_config.get("JWT_HTTP_ONLY"):
             response.set_cookie(
                 key="access",

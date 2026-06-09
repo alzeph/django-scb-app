@@ -40,6 +40,8 @@ def login_user_in_test(user: User) -> APIClient:
     # client.cookies["refresh"]["httponly"] = True
     # client.cookies["refresh"]["secure"] = True  
     # client.cookies["refresh"]["samesite"] = "None"
+
+    client.credentials(HTTP_AUTHORIZATION=f"Bearer {access}")
     
 
     return client

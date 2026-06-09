@@ -13,8 +13,6 @@ class JWTAuthenticationFlexible(JWTAuthentication):
             auth_header = request.headers.get("Authorization")
             if auth_header and auth_header.startswith("Bearer "):
                 raw_token = auth_header.split(" ")[1]
-
-
         # 3. Aucun token trouvé
         if not raw_token:
             return None

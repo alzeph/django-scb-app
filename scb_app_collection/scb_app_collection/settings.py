@@ -146,9 +146,11 @@ SCB_AUTH = {
         "username": "0000000000",
         "password": "qwerty123",
     },
-    "JWT_HTTP_ONLY" : True,
-    "JWT_COOKIE_JSON" : False,
-    "REGISTER_INCLUDE_IN_OTP" : True
+    "JWT_HTTP_ONLY" : False,
+    "JWT_COOKIE_JSON" : True,
+    "REGISTER_INCLUDE_IN_OTP" : True,
+    "GROUPS" : ['user', "admin", "superuser", "manager"],
+    "GROUP_DEFAULT": "user",
 }
 
 AUTH_USER_MODEL = "scb_auth.User"

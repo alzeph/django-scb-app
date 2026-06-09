@@ -17,6 +17,7 @@ class AuthsTestCase(TestCase):
         self.user = User.objects.create(phone_number='+22500000000', **kwargs_user)
         self.client = login_user_in_test(self.user)
         
+        
     # test group 
     
     def test_retrieve_group_success(self):
